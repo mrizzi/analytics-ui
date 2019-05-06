@@ -8,7 +8,7 @@ const localhost = (process.env.PLATFORM === 'linux') ? 'localhost' : 'host.docke
 
 module.exports = {
     routes: {
-        '/apps/starter': { host: `http://${localhost}:8002` },
-        '/insights/starter': { host: `http://${localhost}:8002` }
+        '/apps/xavier': { host: `http://${localhost}:8002` },
+        '/analytics/xavier': { host: `http://${localhost}:8002` }
     }
 };
