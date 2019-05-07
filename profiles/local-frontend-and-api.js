@@ -3,7 +3,7 @@
 const SECTION = 'insights';
 const APP_ID = 'starter';
 const FRONTEND_PORT = 8002;
-const API_PORT = 8888;
+const API_PORT = 8080;
 const routes = {};
 
 
