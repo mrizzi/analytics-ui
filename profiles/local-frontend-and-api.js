@@ -1,7 +1,7 @@
 /*global module*/
 
-const SECTION = 'insights';
-const APP_ID = 'starter';
+const SECTION = 'analytics';
+const APP_ID = 'xavier';
 const FRONTEND_PORT = 8002;
 const API_PORT = 8080;
 const routes = {};
