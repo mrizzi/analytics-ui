@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import asyncComponent from '../../Utilities/asyncComponent';
-import './sample-page.scss';
+import asyncComponent from '../../utils/asyncComponent';
+import './dashboard.scss';
 
 import { Main, PageHeader, PageHeaderTitle } from '@red-hat-insights/insights-frontend-components';
 
 // const SampleComponent = asyncComponent(() => import('../../PresentationalComponents/SampleComponent/sample-component'));
-const EmptyUploadsState = asyncComponent(() => import('../../PresentationalComponents/EmptyUploadsState/EmptyUploadsState'));
+const DashboardEmptyState = asyncComponent(() => import('../../components/dashboardEmptyState/dashboardEmptyState'));
 // const PageHeader2 = asyncComponent(() => import('../../PresentationalComponents/PageHeader/page-header'));
 // const PageHeaderTitle2 = asyncComponent(() => import('../../PresentationalComponents/PageHeader/page-header-title'));
 
@@ -17,7 +17,7 @@ const EmptyUploadsState = asyncComponent(() => import('../../PresentationalCompo
  * https://reactjs.org/docs/components-and-props.html
  * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
  */
-class SamplePage extends Component {
+class Dashboard extends Component {
 
     render() {
         return (
@@ -26,11 +26,11 @@ class SamplePage extends Component {
                     <PageHeaderTitle title='Dashboard' />
                 </PageHeader>
                 <Main>
-                    <EmptyUploadsState />
+                    <DashboardEmptyState />
                 </Main>
             </React.Fragment>
         );
     }
 }
 
-export default withRouter(SamplePage);
+export default withRouter(Dashboard);

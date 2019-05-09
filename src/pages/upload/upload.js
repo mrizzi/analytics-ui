@@ -1,4 +1,4 @@
-import './upload-page.scss';
+import './upload.scss';
 import React, { Component, createRef } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { uploadFile } from '../../api/upload';
 
-class UploadPage extends Component {
+class Upload extends Component {
 
     constructor(props) {
         super(props);
@@ -121,7 +121,7 @@ class UploadPage extends Component {
                                 <Link to="/dashboard">
                                     <Button variant="tertiary">Cancel</Button>
                                 </Link> :
-                                <Link to="/uploads">
+                                <Link to="/reports">
                                     <Button variant="primary">Next</Button>
                                 </Link>
                             }
@@ -133,4 +133,4 @@ class UploadPage extends Component {
     }
 }
 
-export default withRouter(UploadPage);
+export default withRouter(Upload);

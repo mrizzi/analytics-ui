@@ -1,7 +1,7 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import asyncComponent from './Utilities/asyncComponent';
+import asyncComponent from './utils/asyncComponent';
 import some from 'lodash/some';
 
 /**
@@ -18,15 +18,15 @@ import some from 'lodash/some';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const SamplePage = asyncComponent(() => import(/* webpackChunkName: "SamplePage" */ './SmartComponents/SamplePage/SamplePage'));
-const Rules = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/Rules/ListRules'));
-const ViewRule = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/Rules/ViewRule'));
-const UploadPage = asyncComponent(() => import(/* webpackChunkName: "SamplePage" */ './SmartComponents/UploadPage/UploadPage'));
+const Dashboard = asyncComponent(() => import(/* webpackChunkName: "SamplePage" */ './pages/dashboard/dashboard'));
+const ListReports = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './pages/report/list/listReports'));
+const ViewReport = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './pages/report/view/viewReport'));
+const Upload = asyncComponent(() => import(/* webpackChunkName: "SamplePage" */ './pages/upload/upload'));
 const paths = {
     dashboard: '/dashboard',
-    uploads: '/uploads',
     upload: '/upload',
-    view: '/view/:id'
+    reports: '/reports',
+    viewReport: '/reports/:id'
 };
 
 type Props = {
@@ -60,10 +60,10 @@ export const Routes = (props: Props) => {
 
     return (
         <Switch>
-            <InsightsRoute path={ paths.dashboard } component={ SamplePage } rootClass='dashboard'/>
-            <InsightsRoute path={ paths.uploads } component={ Rules } rootClass='uploads'/>
-            <InsightsRoute path={ paths.upload } component={ UploadPage } rootClass='upload'/>
-            <InsightsRoute path={ paths.view } component={ ViewRule } rootClass='view'/>
+            <InsightsRoute path={ paths.dashboard } component={ Dashboard } rootClass='dashboard'/>
+            <InsightsRoute path={ paths.upload } component={ Upload } rootClass='upload'/>
+            <InsightsRoute path={ paths.reports } component={ ListReports } rootClass='reports' exact/>
+            <InsightsRoute path={ paths.viewReport } component={ ViewReport } rootClass='view'/>
 
             { /* Finally, catch all unmatched routes */ }
             <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.dashboard }/>) }/>

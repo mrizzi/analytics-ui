@@ -9,9 +9,9 @@ import {
 } from '@patternfly/react-table';
 import { Card, CardHeader, CardBody } from '@patternfly/react-core';
 
-import { getAllReports } from '../../api/report';
+import { getAllReports } from '../../../api/report';
 
-class ListRules extends React.Component {
+class ListReports extends React.Component {
 
     constructor(props) {
         super(props);
@@ -43,7 +43,7 @@ class ListRules extends React.Component {
                         item.customerId,
                         item.fileName,
                         {
-                            title: <Link to={ `/view/${item.id}` }>
+                            title: <Link to={ `/reports/${item.id}` }>
                                 <Button variant='primary'>View</Button>
                             </Link>
                         }
@@ -84,4 +84,4 @@ class ListRules extends React.Component {
     }
 };
 
-export default ListRules;
+export default ListReports;

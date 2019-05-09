@@ -12,10 +12,10 @@ import {
     ActionGroup,
     Button
 } from '@patternfly/react-core';
-import { getReportById } from '../../api/report';
-import { formatValue } from '../../Utilities/formatValue';
+import { getReportById } from '../../../api/report';
+import { formatValue } from '../../../utils/formatValue';
 
-class ViewRule extends React.Component {
+class ViewReport extends React.Component {
 
     constructor(props) {
         super(props);
@@ -87,8 +87,18 @@ class ViewRule extends React.Component {
                                                 type="text"
                                             />
                                         </FormGroup>
+                                        <FormGroup
+                                            label="Creation date"
+                                            fieldId="creationDate"
+                                        >
+                                            <TextInput
+                                                id="creationDate"
+                                                value={ new Date(this.state.report.creationDate) }
+                                                type="text"
+                                            />
+                                        </FormGroup>
                                         <ActionGroup>
-                                            <Link to='uploads'>
+                                            <Link to='/reports'>
                                                 <Button variant="secondary">Back</Button>
                                             </Link>
                                         </ActionGroup>
@@ -107,8 +117,8 @@ class ViewRule extends React.Component {
     }
 }
 
-ViewRule.propTypes = {
+ViewReport.propTypes = {
     match: PropTypes.object
 };
 
-export default ViewRule;
+export default ViewReport;

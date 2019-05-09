@@ -11,7 +11,7 @@ import { CubesIcon } from '@patternfly/react-icons';
 import { Bullseye } from '@patternfly/react-core';
 import { Card, CardBody } from '@patternfly/react-core';
 
-const EmptyUploadsState = () => {
+const DashboardEmptyState = () => {
     return (
         <Card>
             <CardBody>
@@ -34,4 +34,4 @@ const EmptyUploadsState = () => {
     );
 };
 
-export default EmptyUploadsState;
+export default DashboardEmptyState;
