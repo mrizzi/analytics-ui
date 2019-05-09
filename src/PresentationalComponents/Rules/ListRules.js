@@ -5,10 +5,11 @@ import { Button } from '@patternfly/react-core';
 import {
     Table,
     TableHeader,
-    TableBody,
-    textCenter
+    TableBody
 } from '@patternfly/react-table';
 import { Card, CardHeader, CardBody } from '@patternfly/react-core';
+
+import { getAllReports } from '../../api/report';
 
 class ListRules extends React.Component {
 
@@ -16,38 +17,43 @@ class ListRules extends React.Component {
         super(props);
         this.state = {
             columns: [
-                { title: 'Repositories' },
-                'Branches',
-                { title: 'Pull requests' },
-                'Workspaces',
+                { title: 'Report Id' },
+                { title: 'Customer Id' },
                 {
-                    title: 'Last Commit',
-                    transforms: [ textCenter ],
-                    cellTransforms: [ textCenter ]
-                }
-            ],
-            rows: [
-                [ 'one', 'two', 'three', 'four', 'five' ],
-                [
-                    {
-                        title: <div>one - 2</div>,
-                        props: { title: 'hover title', colSpan: 3 }
-                    },
-                    'four - 2',
-                    'five - 2'
-                ],
-                [
-                    'one - 3',
-                    'two - 3',
-                    'three - 3',
-                    'four - 3',
-                    {
-                        title: 'five - 3 (not centered)',
-                        props: { textCenter: false }
+                    title: 'File name',
+                    props: {
+                        className: 'pf-u-text-align-center'
                     }
-                ]
-            ]
+                },
+                ''
+            ],
+            rows: []
         };
+    }
+
+    componentDidMount() {
+        getAllReports().then((response) => {
+            const rows = response.data.map((item) => {
+                return {
+                    props: {
+                        item
+                    },
+                    cells: [
+                        item.id,
+                        item.customerId,
+                        item.fileName,
+                        {
+                            title: <Link to={ `/view/${item.id}` }>
+                                <Button variant='primary'>View</Button>
+                            </Link>
+                        }
+                    ]
+                };
+            });
+            this.setState({
+                rows
+            });
+        });
     }
 
     render() {
@@ -56,7 +62,7 @@ class ListRules extends React.Component {
         return (
             <React.Fragment>
                 <PageHeader>
-                    <PageHeaderTitle title='Uploads' />
+                    <PageHeaderTitle title='Reports' />
                 </PageHeader>
                 <Main>
                     <Card>
@@ -66,7 +72,7 @@ class ListRules extends React.Component {
                             </Link>
                         </CardHeader>
                         <CardBody>
-                            <Table caption="Simple Table" cells={ columns } rows={ rows }>
+                            <Table caption="Select one row for more info" cells={ columns } rows={ rows }>
                                 <TableHeader />
                                 <TableBody />
                             </Table>

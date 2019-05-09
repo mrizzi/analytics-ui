@@ -121,7 +121,7 @@ class UploadPage extends Component {
                                 <Link to="/dashboard">
                                     <Button variant="tertiary">Cancel</Button>
                                 </Link> :
-                                <Link to="/dashboard">
+                                <Link to="/uploads">
                                     <Button variant="primary">Next</Button>
                                 </Link>
                             }
