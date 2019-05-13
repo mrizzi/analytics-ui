@@ -1,3 +1,16 @@
+# Pre requirements
+- Install Nodejs
+- Install npm
+- Install [yarn](https://yarnpkg.com/en/docs/install)
+
+Global npm packages needed:
+```shell
+npm install -g webpack-dev-server
+npm install -g webpack-cli
+```
+
+**NOTE: FOR RUNNING AND DEVELOPING YOU NEED TO ACTIVATE YOUR Red Hat VPN.**
+
 # Cloning the repositories
 
 * You can curl a script to bypass the downloading. You will still have to run each application yourself as noted in the "Running and Developing" section below *
