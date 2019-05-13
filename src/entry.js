@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { init } from './store';
 import App from './App';
-import getBaseName from './utils/getBaseName';
+import getBaseName from './Utilities/getBaseName';
 
 ReactDOM.render(
     <Provider store={ init().getStore() }>

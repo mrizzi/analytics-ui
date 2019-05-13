@@ -13,7 +13,7 @@ import {
     Button
 } from '@patternfly/react-core';
 import { getReportById } from '../../../api/report';
-import { formatValue } from '../../../utils/formatValue';
+import { formatValue } from '../../../Utilities/formatValue';
 
 class ViewReport extends React.Component {
 

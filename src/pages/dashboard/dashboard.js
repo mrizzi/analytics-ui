@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import asyncComponent from '../../utils/asyncComponent';
+import asyncComponent from '../../Utilities/asyncComponent';
 import './dashboard.scss';
 
 import { Main, PageHeader, PageHeaderTitle } from '@red-hat-insights/insights-frontend-components';
 
 // const SampleComponent = asyncComponent(() => import('../../PresentationalComponents/SampleComponent/sample-component'));
-const DashboardEmptyState = asyncComponent(() => import('../../components/dashboardEmptyState/dashboardEmptyState'));
+const EmptyDashboard = asyncComponent(() => import('../../SmartComponents/EmptyDashboard/EmptyDashboard'));
 // const PageHeader2 = asyncComponent(() => import('../../PresentationalComponents/PageHeader/page-header'));
 // const PageHeaderTitle2 = asyncComponent(() => import('../../PresentationalComponents/PageHeader/page-header-title'));
 
@@ -26,7 +26,7 @@ class Dashboard extends Component {
                     <PageHeaderTitle title='Dashboard' />
                 </PageHeader>
                 <Main>
-                    <DashboardEmptyState />
+                    <EmptyDashboard />
                 </Main>
             </React.Fragment>
         );

@@ -118,7 +118,7 @@ class Upload extends Component {
                         </CardBody>
                         <CardFooter>
                             { (this.state.progress !== 100) ?
-                                <Link to="/dashboard">
+                                <Link to="/reports">
                                     <Button variant="tertiary">Cancel</Button>
                                 </Link> :
                                 <Link to="/reports">
