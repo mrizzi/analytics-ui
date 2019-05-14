@@ -6,10 +6,6 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import {
     Card,
     CardBody,
-    Form,
-    FormGroup,
-    TextInput,
-    ActionGroup,
     Button
 } from '@patternfly/react-core';
 import {
@@ -18,6 +14,8 @@ import {
 import { ReportListPage } from '../../PresentationalComponents/ReportListPage/ReportListPage';
 import LoadingState from '../../PresentationalComponents/LoadingState/LoadingState';
 import { fetchReport } from '../../actions/ReportAction';
+import { formatValue } from '../../Utilities/formatValue';
+import '@patternfly/patternfly/patternfly-addons.css';
 
 class ReportView extends React.Component {
 
@@ -56,63 +54,21 @@ class ReportView extends React.Component {
                     <Card>
                         <CardBody>
                             {
-                                report ? <Form isHorizontal>
-                                    <FormGroup
-                                        label="File name"
-                                        fieldId="fileName"
-                                    >
-                                        <TextInput
-                                            id="fileName"
-                                            value={ report.fileName }
-                                            type="text"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup
-                                        label="Number of hosts"
-                                        fieldId="numberOfHosts"
-                                    >
-                                        <TextInput
-                                            id="numberOfHosts"
-                                            value={ report.numberOfHosts }
-                                            type="text"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup
-                                        label="Total disk space"
-                                        fieldId="totalDiskSpace"
-                                    >
-                                        <TextInput
-                                            id="totalDiskSpace"
-                                            value={ report.totalDiskSpace }
-                                            type="text"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup
-                                        label="Total price"
-                                        fieldId="totalPrice"
-                                    >
-                                        <TextInput
-                                            id="totalPrice"
-                                            value={ report.totalPrice }
-                                            type="text"
-                                        />
-                                    </FormGroup>
-                                    <FormGroup
-                                        label="Creation date"
-                                        fieldId="creationDate"
-                                    >
-                                        <TextInput
-                                            id="creationDate"
-                                            value={ report.creationDate }
-                                            type="text"
-                                        />
-                                    </FormGroup>
-                                    <ActionGroup>
-                                        <Link to='/reports'>
-                                            <Button variant="secondary">Back</Button>
-                                        </Link>
-                                    </ActionGroup>
-                                </Form>
+                                report ? <div className="pf-c-content">
+                                    <dl>
+                                        <dt>File name:</dt>
+                                        <dd>{ report.fileName }</dd>
+                                        <dt>Number of hosts:</dt>
+                                        <dd>{ report.numberOfHosts.toLocaleString() }</dd>
+                                        <dt>Total disk space:</dt>
+                                        <dd>{ report.totalDiskSpace.toLocaleString() } Kb</dd>
+                                        <dt>Total price:</dt>
+                                        <dd>{ formatValue(report.totalPrice, 'usd') }</dd>
+                                        <dt>Creation date:</dt>
+                                        <dd>{ new Date(report.creationDate).toString() }</dd>
+                                    </dl>
+                                    <Button variant="secondary" component={ Link } to="/reports">Back</Button>
+                                </div>
                                     : ''
                             }
                         </CardBody>
