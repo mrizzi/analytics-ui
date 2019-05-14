@@ -18,19 +18,20 @@ import some from 'lodash/some';
  *         see the difference with DashboardMap and InventoryDeployments.
  *
  */
-const Dashboard = asyncComponent(() => import(/* webpackChunkName: "SamplePage" */ './PresentationalComponents/dashboard/dashboard'));
-const ListReports = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/report/list/listReports'));
-const ViewReport = asyncComponent(() => import(/* webpackChunkName: "Rules" */ './PresentationalComponents/report/view/viewReport'));
-const Upload = asyncComponent(() => import(/* webpackChunkName: "SamplePage" */ './PresentationalComponents/upload/upload'));
+const Dashboard = asyncComponent(() =>
+    import(/* webpackChunkName: "SamplePage" */ './PresentationalComponents/dashboard/dashboard'));
+const Upload = asyncComponent(() =>
+    import(/* webpackChunkName: "SamplePage" */ './PresentationalComponents/upload/upload'));
+const ReportList = asyncComponent(() =>
+    import(/* webpackChunkName: "Rules" */ './SmartComponents/ReportList/ReportList'));
+const ReportView = asyncComponent(() =>
+    import(/* webpackChunkName: "Rules" */ './SmartComponents/ReportView/ReportView'));
+
 const paths = {
     dashboard: '/dashboard',
     upload: '/upload',
     reports: '/reports',
-    viewReport: '/reports/:id'
-};
-
-type Props = {
-    childProps: any
+    reportView: '/reports/:id'
 };
 
 const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
@@ -55,18 +56,22 @@ InsightsRoute.propTypes = {
  *      path - https://prod.foo.redhat.com:1337/insights/advisor/rules
  *      component - component to be rendered when a route has been chosen.
  */
-export const Routes = (props: Props) => {
+export const Routes = (props) => {
     const path = props.childProps.location.pathname;
 
     return (
         <Switch>
-            <InsightsRoute path={ paths.dashboard } component={ Dashboard } rootClass='dashboard'/>
-            <InsightsRoute path={ paths.upload } component={ Upload } rootClass='upload'/>
-            <InsightsRoute path={ paths.reports } component={ ListReports } rootClass='reports' exact/>
-            <InsightsRoute path={ paths.viewReport } component={ ViewReport } rootClass='view'/>
+            <InsightsRoute path={ paths.dashboard } component={ Dashboard } rootClass='dashboard' />
+            <InsightsRoute path={ paths.upload } component={ Upload } rootClass='upload' />
+            <InsightsRoute path={ paths.reports } component={ ReportList } rootClass='reports' exact />
+            <InsightsRoute path={ paths.reportView } component={ ReportView } rootClass='report' exact/>
 
             { /* Finally, catch all unmatched routes */ }
-            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.dashboard }/>) }/>
+            <Route render={ () => some(paths, p => p === path) ? null : (<Redirect to={ paths.dashboard } />) } />
         </Switch>
     );
+};
+
+Routes.propTypes = {
+    childProps: PropTypes.object.isRequired
 };

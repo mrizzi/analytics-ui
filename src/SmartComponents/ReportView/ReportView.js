@@ -12,10 +12,10 @@ import {
     ActionGroup,
     Button
 } from '@patternfly/react-core';
-import { getReportById } from '../../../api/report';
-import { formatValue } from '../../../Utilities/formatValue';
+import { getReportById } from '../../api/report';
+import { formatValue } from '../../Utilities/formatValue';
 
-class ViewReport extends React.Component {
+class ViewReRport extends React.Component {
 
     constructor(props) {
         super(props);
@@ -117,8 +117,8 @@ class ViewReport extends React.Component {
     }
 }
 
-ViewReport.propTypes = {
+ViewReRport.propTypes = {
     match: PropTypes.object
 };
 
-export default ViewReport;
+export default ViewReRport;
