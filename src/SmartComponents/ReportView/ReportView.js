@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { PageHeader, PageHeaderTitle, Main } from '@red-hat-insights/insights-frontend-components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import {
     Card,
-    CardHeader,
     CardBody,
     Form,
     FormGroup,
@@ -12,10 +12,14 @@ import {
     ActionGroup,
     Button
 } from '@patternfly/react-core';
-import { getReportById } from '../../api/report';
-import { formatValue } from '../../Utilities/formatValue';
+import {
+    Spinner
+} from '@red-hat-insights/insights-frontend-components';
+import { ReportListPage } from '../../PresentationalComponents/ReportListPage/ReportListPage';
+import LoadingState from '../../PresentationalComponents/LoadingState/LoadingState';
+import { fetchReport } from '../../actions/ReportAction';
 
-class ViewReRport extends React.Component {
+class ReportView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -26,99 +30,119 @@ class ViewReRport extends React.Component {
     }
 
     componentDidMount() {
-        getReportById(this.state.id).then((res) => {
-            this.setState({
-                report: res.data
-            });
-        });
+        this.fetchData();
+    }
+
+    fetchData() {
+        let id = this.props.match.params.reportId;
+        if (id) {
+            this.props.fetchReport(id);
+        }
     }
 
     render() {
+        const { report } = this.props;
+        let action = this.props.match.params.reportId && report ? report.id : 'Unknown report';
+
+        if (report && !this.props.match.params.reportId) {
+            return <Redirect to={ `/reports/${ report.id }` } />;
+        }
+
         return (
-            <React.Fragment>
-                <PageHeader>
-                    <PageHeaderTitle title='Report' />
-                    <p>This is the result of high analysis. Take a look to the information below</p>
-                </PageHeader>
-                <Main>
-                    { (this.state.report) ?
-                        (
-                            <Card>
-                                <CardHeader>Report { this.state.report.id }</CardHeader>
-                                <CardBody>
-                                    <Form isHorizontal>
-                                        <FormGroup
-                                            label="File name"
-                                            fieldId="fileName"
-                                        >
-                                            <TextInput
-                                                id="fileName"
-                                                value={ this.state.report.fileName }
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                        <FormGroup
-                                            label="Number of hosts"
-                                            fieldId="numberOfHosts"
-                                        >
-                                            <TextInput
-                                                id="numberOfHosts"
-                                                value={ this.state.report.numberOfHosts }
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                        <FormGroup
-                                            label="Total disk space"
-                                            fieldId="totalDiskSpace"
-                                        >
-                                            <TextInput
-                                                id="totalDiskSpace"
-                                                value={ formatValue(this.state.report.totalDiskSpace, 'gb') }
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                        <FormGroup
-                                            label="Total price"
-                                            fieldId="totalPrice"
-                                        >
-                                            <TextInput
-                                                id="totalPrice"
-                                                value={ this.state.report.totalPrice }
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                        <FormGroup
-                                            label="Creation date"
-                                            fieldId="creationDate"
-                                        >
-                                            <TextInput
-                                                id="creationDate"
-                                                value={ new Date(this.state.report.creationDate) }
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                        <ActionGroup>
-                                            <Link to='/reports'>
-                                                <Button variant="secondary">Back</Button>
-                                            </Link>
-                                        </ActionGroup>
-                                    </Form>
-                                </CardBody>
-                            </Card>
-                        ) : (
-                            <Card>
-                                <CardBody>Empty</CardBody>
-                            </Card>
-                        )
-                    }
-                </Main>
-            </React.Fragment>
+            <ReportListPage title={ `Report ${action}` } showBreadcrumb={ false }>
+                <LoadingState
+                    loading={ this.props.loading }
+                    placeholder={ <Spinner centered/> }>
+                    <Card>
+                        <CardBody>
+                            {
+                                report ? <Form isHorizontal>
+                                    <FormGroup
+                                        label="File name"
+                                        fieldId="fileName"
+                                    >
+                                        <TextInput
+                                            id="fileName"
+                                            value={ report.fileName }
+                                            type="text"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup
+                                        label="Number of hosts"
+                                        fieldId="numberOfHosts"
+                                    >
+                                        <TextInput
+                                            id="numberOfHosts"
+                                            value={ report.numberOfHosts }
+                                            type="text"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup
+                                        label="Total disk space"
+                                        fieldId="totalDiskSpace"
+                                    >
+                                        <TextInput
+                                            id="totalDiskSpace"
+                                            value={ report.totalDiskSpace }
+                                            type="text"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup
+                                        label="Total price"
+                                        fieldId="totalPrice"
+                                    >
+                                        <TextInput
+                                            id="totalPrice"
+                                            value={ report.totalPrice }
+                                            type="text"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup
+                                        label="Creation date"
+                                        fieldId="creationDate"
+                                    >
+                                        <TextInput
+                                            id="creationDate"
+                                            value={ report.creationDate }
+                                            type="text"
+                                        />
+                                    </FormGroup>
+                                    <ActionGroup>
+                                        <Link to='/reports'>
+                                            <Button variant="secondary">Back</Button>
+                                        </Link>
+                                    </ActionGroup>
+                                </Form>
+                                    : ''
+                            }
+                        </CardBody>
+                    </Card>
+                </LoadingState>
+            </ReportListPage>
         );
     }
 }
 
-ViewReRport.propTypes = {
-    match: PropTypes.object
+ReportView.propTypes = {
+    match: PropTypes.object,
+    report: PropTypes.object,
+    loading: PropTypes.bool,
+    fetchReport: PropTypes.func.isRequired
 };
 
-export default ViewReRport;
+const mapStateToProps = (state)  => {
+    let { report, loading } = state.reports;
+
+    return {
+        report,
+        loading
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        fetchReport
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ReportView));

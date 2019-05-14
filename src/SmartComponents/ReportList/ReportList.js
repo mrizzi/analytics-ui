@@ -134,11 +134,11 @@ class ReportsList extends React.Component {
             </ReportListPage>
         );
     }
-};
+}
 
 ReportsList.propTypes = {
     fetchReports: PropTypes.func.isRequired,
-    reports: PropTypes.object.isRequired,
+    reports: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     total: PropTypes.number,
     error: PropTypes.string

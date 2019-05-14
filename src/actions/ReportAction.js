@@ -18,7 +18,7 @@ export const fetchReports = () => ({
 
 export const fetchReport = (id) => ({
     type: FETCH_REPORT,
-    payload: axios.get(`/report/${ id }`),
+    payload: axios.get(`/api/xavier/camel/report/${ id }`),
     meta: {
         notifications: {
             rejected: {

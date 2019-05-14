@@ -1,4 +1,5 @@
 import {
+    FETCH_REPORT,
     FETCH_REPORTS
 } from '../actions/ReportAction';
 import {
@@ -8,25 +9,20 @@ import {
     initialStateFor
 } from './reducerHelper';
 
-export const normalizeFilterData = (payload) => {
-    return payload.data === null ? {} : payload.data;
-};
-
-export const reportReducer = function (state = initialStateFor('reports', {}), action) {
+export const reportReducer = function (state = initialStateFor('reports', []), action) {
     switch (action.type) {
         case pendingMessage(FETCH_REPORTS):
             return {
                 ...state,
-                reports: {},
+                reports: [],
                 loading: true,
-                error: null,
-                total: 0
+                error: null
             };
 
         case successMessage(FETCH_REPORTS):
             return {
                 ...state,
-                reports: normalizeFilterData(action.payload),
+                reports: action.payload.data,
                 loading: false,
                 error: null,
                 total: action.payload.data.length
@@ -37,8 +33,30 @@ export const reportReducer = function (state = initialStateFor('reports', {}), a
                 ...state,
                 reports: {},
                 loading: false,
+                error: action.payload.message
+            };
+
+        case pendingMessage(FETCH_REPORT):
+            return {
+                ...state,
+                loading: true,
+                error: null
+            };
+
+        case successMessage(FETCH_REPORT):
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                report: action.payload.data
+            };
+
+        case failureMessage(FETCH_REPORT):
+            return {
+                ...state,
+                loading: false,
                 error: action.payload.message,
-                total: 0
+                report: null
             };
 
         default:

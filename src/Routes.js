@@ -31,7 +31,7 @@ const paths = {
     dashboard: '/dashboard',
     upload: '/upload',
     reports: '/reports',
-    reportView: '/reports/:id'
+    reportView: '/reports/:reportId'
 };
 
 const InsightsRoute = ({ component: Component, rootClass, ...rest }) => {
