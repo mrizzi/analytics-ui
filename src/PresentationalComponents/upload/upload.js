@@ -42,9 +42,8 @@ class Upload extends Component {
         const uploaders = files.map(file => {
             const formData = new FormData();
             formData.append('file', file, file.name);
-            formData.append('customerId', '36500629');
 
-            return uploadFile(formData, {
+            return uploadFile('36500629', formData, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
