@@ -83,7 +83,7 @@ class UploadFiles extends Component {
                                     onDrop={ this.onDrop }
                                     ref={ dropzoneRef }
                                     noClick noKeyboard
-                                    multiple={ true }
+                                    multiple={ false }
                                     accept={ [ 'application/zip', 'application/json' ] }
                                 >
                                     { ({ getRootProps, getInputProps }) => {
