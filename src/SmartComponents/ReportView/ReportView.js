@@ -61,7 +61,7 @@ class ReportView extends React.Component {
                                         <dt>Number of hosts:</dt>
                                         <dd>{ report.numberOfHosts.toLocaleString() }</dd>
                                         <dt>Total disk space:</dt>
-                                        <dd>{ report.totalDiskSpace.toLocaleString() } Kb</dd>
+                                        <dd>{ report.totalDiskSpace.toLocaleString() } B</dd>
                                         <dt>Total price:</dt>
                                         <dd>{ formatValue(report.totalPrice, 'usd') }</dd>
                                         <dt>Creation date:</dt>
