@@ -1,5 +1,5 @@
-import axios from 'axios';
+import ApiClient from './apiClient';
 
 export function uploadFile(customerId, formData, config = {}) {
-    return axios.post(`/api/xavier/upload/${customerId}`, formData, config);
+    return ApiClient.post(`/upload/${customerId}`, formData, config);
 }

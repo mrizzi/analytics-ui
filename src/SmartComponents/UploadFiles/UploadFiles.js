@@ -112,8 +112,12 @@ class UploadFiles extends Component {
                                                 <StackItem key={ upload.file.name }>
                                                     <Progress
                                                         value={ upload.progress }
-                                                        title={ `Uploading: ${upload.file.name}` }
-                                                        variant={ ProgressVariant.primary } />
+                                                        title={ upload.error
+                                                            ? `${upload.file.name}: ${upload.error}`
+                                                            : `Uploading: ${upload.file.name}` }
+                                                        variant={ upload.error
+                                                            ? ProgressVariant.danger
+                                                            : ProgressVariant.primary } />
                                                 </StackItem>
                                             );
                                         })

@@ -13,5 +13,6 @@ routes[`/beta/apps/${APP_ID}`]       = { host: `http://localhost:${FRONTEND_PORT
 routes[`/apps/${APP_ID}`]            = { host: `http://localhost:${FRONTEND_PORT}` };
 
 routes[`/api/${APP_ID}`] = { host: `http://localhost:${API_PORT}` };
+// routes[`/api/${APP_ID}`] = { host: `http://analytics-integration-migration-analyics.127.0.0.1.nip.io` };
 
 module.exports = { routes };
