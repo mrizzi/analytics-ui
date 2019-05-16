@@ -6,12 +6,12 @@ export const ActionTypes = {
     UPLOAD_CLEAR: 'UPLOAD_CLEAR'
 };
 
-export const uploadRequest = (file, config) => {
+export const uploadRequest = (customerId, file, config) => {
     const formData = new FormData();
     formData.append('file', file, file.name);
     return {
         type: ActionTypes.UPLOAD_REQUEST,
-        payload: uploadFile(formData, config),
+        payload: uploadFile(customerId, formData, config),
         meta: {
             file,
             notifications: {

@@ -51,7 +51,8 @@ class UploadFiles extends Component {
                 }
             };
 
-            this.props.uploadRequest(file, config);
+            const customerId = '123456';
+            this.props.uploadRequest(customerId, file, config);
         });
     }
 
