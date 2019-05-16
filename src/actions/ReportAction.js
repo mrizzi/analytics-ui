@@ -1,11 +1,11 @@
-import axios from 'axios';
+import { getAllReports, getReportById } from '../api/report';
 
 export const FETCH_REPORTS = 'FETCH_REPORTS';
 export const FETCH_REPORT = 'FETCH_REPORT';
 
 export const fetchReports = () => ({
     type: FETCH_REPORTS,
-    payload: axios.get('/api/xavier/camel/report'),
+    payload: getAllReports(),
     meta: {
         notifications: {
             rejected: {
@@ -18,7 +18,7 @@ export const fetchReports = () => ({
 
 export const fetchReport = (id) => ({
     type: FETCH_REPORT,
-    payload: axios.get(`/api/xavier/camel/report/${ id }`),
+    payload: getReportById(id),
     meta: {
         notifications: {
             rejected: {

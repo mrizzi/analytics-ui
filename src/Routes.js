@@ -20,8 +20,8 @@ import some from 'lodash/some';
  */
 const Dashboard = asyncComponent(() =>
     import(/* webpackChunkName: "SamplePage" */ './PresentationalComponents/dashboard/dashboard'));
-const Upload = asyncComponent(() =>
-    import(/* webpackChunkName: "SamplePage" */ './PresentationalComponents/upload/upload'));
+const UploadFiles = asyncComponent(() =>
+    import(/* webpackChunkName: "SamplePage" */ './SmartComponents/UploadFiles/UploadFiles'));
 const ReportList = asyncComponent(() =>
     import(/* webpackChunkName: "Rules" */ './SmartComponents/ReportList/ReportList'));
 const ReportView = asyncComponent(() =>
@@ -62,7 +62,7 @@ export const Routes = (props) => {
     return (
         <Switch>
             <InsightsRoute path={ paths.dashboard } component={ Dashboard } rootClass='dashboard' />
-            <InsightsRoute path={ paths.upload } component={ Upload } rootClass='upload' />
+            <InsightsRoute path={ paths.upload } component={ UploadFiles } rootClass='upload' />
             <InsightsRoute path={ paths.reports } component={ ReportList } rootClass='reports' exact />
             <InsightsRoute path={ paths.reportView } component={ ReportView } rootClass='report' exact/>
 

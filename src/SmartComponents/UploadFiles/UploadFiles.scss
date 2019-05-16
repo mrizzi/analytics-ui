@@ -19,16 +19,16 @@
     padding: 20px;
     border-width: 2px;
     border-radius: 2px;
-    // border-color: #eeeeee;
+    border-color: #cdcdcd;
     border-style: dashed;
     // background-color: #fafafa;
-    // color: #bdbdbd;
+    color: #bdbdbd;
     outline: none;
     transition: border .24s ease-in-out;
 }
   
-.dropzone:focus {
-    border-color: #2196f3;
+.dropzone:hover {
+    // border-color: #161616;
 }
   
 .dropzone.disabled {

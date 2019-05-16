@@ -1,6 +1,7 @@
 import ReducerRegistry from '@red-hat-insights/insights-frontend-components/Utilities/ReducerRegistry';
 import promiseMiddleware from 'redux-promise-middleware';
 import { reportReducer } from '../reducers/ReportReducer';
+import { uploadReducer } from '../reducers/UploadReducer';
 
 let registry;
 
@@ -15,7 +16,8 @@ export function init(...middleware) {
     ]);
 
     registry.register({
-        reports: reportReducer
+        reports: reportReducer,
+        uploads: uploadReducer
     });
 
     return registry;
