@@ -27,7 +27,7 @@ import {
 import { CubesIcon } from '@patternfly/react-icons';
 import ReportListPage from '../../PresentationalComponents/ReportListPage/ReportListPage';
 import LoadingState from '../../PresentationalComponents/LoadingState/LoadingState';
-import * as actionCreators from '../../actions/ReportAction';
+import * as actionCreators from '../../actions/ReportActions';
 
 class ReportsList extends React.Component {
 

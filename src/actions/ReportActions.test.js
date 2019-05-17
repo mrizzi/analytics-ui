@@ -5,7 +5,7 @@ jest.mock('../api/apiClient', () => ({
     delete: jest.fn(() => Promise.resolve({}))
 }));
 
-import * as actionGenerator from './ReportAction';
+import * as actionGenerator from './ReportActions';
 
 describe('fetchReports', () => {
     it('returns a state object', () => {

@@ -6,9 +6,9 @@ import {
 } from './reducerHelper';
 import {
     ActionTypes
-} from '../actions/UploadAction';
+} from '../actions/UploadActions';
 
-export const uploadReducer = function (state = initialStateFor('uploads', []), action) {
+export const uploadsReducer = function (state = initialStateFor('uploads', []), action) {
     switch (action.type) {
         case ActionTypes.UPLOAD_PROGRESS:
             return {

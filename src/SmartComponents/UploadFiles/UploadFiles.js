@@ -25,7 +25,7 @@ import {
     uploadRequest,
     uploadProgress,
     uploadClear
-} from '../../actions/UploadAction';
+} from '../../actions/UploadActions';
 
 class UploadFiles extends Component {
 

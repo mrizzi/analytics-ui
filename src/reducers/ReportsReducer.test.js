@@ -1,8 +1,8 @@
-import { reportReducer } from './ReportReducer';
+import { reportsReducer } from './ReportsReducer';
 import {
     FETCH_REPORTS,
     FETCH_REPORT
-} from '../actions/ReportAction';
+} from '../actions/ReportActions';
 import {
     successMessage,
     failureMessage,
@@ -29,7 +29,7 @@ describe('report reducer', () => {
     };
 
     it('should return the initial state', () => {
-        expect(reportReducer(undefined, {})).toEqual(reportInitialState);
+        expect(reportsReducer(undefined, {})).toEqual(reportInitialState);
     });
 
     it('should handle FETCH_REPORTS_PENDING', () => {
@@ -38,7 +38,7 @@ describe('report reducer', () => {
             loading: true,
             error: null
         };
-        const newState = reportReducer(
+        const newState = reportsReducer(
             reportInitialState,
             fromRequest(pendingMessage(FETCH_REPORTS), {})
         );
@@ -51,7 +51,7 @@ describe('report reducer', () => {
             loading: true,
             error: null
         };
-        const newState = reportReducer(
+        const newState = reportsReducer(
             reportInitialState,
             fromRequest(pendingMessage(FETCH_REPORT), {})
         );
@@ -65,7 +65,7 @@ describe('report reducer', () => {
             reports: reports.data,
             total: 3
         };
-        const newState = reportReducer(
+        const newState = reportsReducer(
             reportInitialState,
             fromRequest(successMessage(FETCH_REPORTS), reports)
         );
@@ -80,7 +80,7 @@ describe('report reducer', () => {
             loading: false,
             report: testReport
         };
-        const newState = reportReducer(
+        const newState = reportsReducer(
             reportInitialState,
             fromRequest(successMessage(FETCH_REPORT), report)
         );
@@ -89,7 +89,7 @@ describe('report reducer', () => {
 
     it('should handle FETCH_REPORTS_FAILURE', () => {
         const error = 'It broke';
-        const newState = reportReducer(
+        const newState = reportsReducer(
             reportInitialState,
             fromRequest(failureMessage(FETCH_REPORTS), { message: error })
         );
@@ -102,7 +102,7 @@ describe('report reducer', () => {
 
     it('should handle FETCH_REPORT_FAILURE', () => {
         const error = 'It broke';
-        const newState = reportReducer(
+        const newState = reportsReducer(
             reportInitialState,
             fromRequest(failureMessage(FETCH_REPORT), { message: error })
         );

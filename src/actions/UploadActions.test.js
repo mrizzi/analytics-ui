@@ -5,7 +5,7 @@ jest.mock('../api/apiClient', () => ({
     delete: jest.fn(() => Promise.resolve({}))
 }));
 
-import * as actionGenerator from './UploadAction';
+import * as actionGenerator from './UploadActions';
 
 describe('uploadRequest', () => {
     it('returns a state object', () => {

@@ -1,7 +1,7 @@
 import {
     FETCH_REPORT,
     FETCH_REPORTS
-} from '../actions/ReportAction';
+} from '../actions/ReportActions';
 import {
     pendingMessage,
     successMessage,
@@ -9,7 +9,7 @@ import {
     initialStateFor
 } from './reducerHelper';
 
-export const reportReducer = function (state = initialStateFor('reports', []), action) {
+export const reportsReducer = function (state = initialStateFor('reports', []), action) {
     switch (action.type) {
         case pendingMessage(FETCH_REPORTS):
             return {

@@ -13,7 +13,7 @@ import {
 } from '@red-hat-insights/insights-frontend-components';
 import { ReportListPage } from '../../PresentationalComponents/ReportListPage/ReportListPage';
 import LoadingState from '../../PresentationalComponents/LoadingState/LoadingState';
-import { fetchReport } from '../../actions/ReportAction';
+import { fetchReport } from '../../actions/ReportActions';
 import { formatValue } from '../../Utilities/formatValue';
 import '@patternfly/patternfly/patternfly-addons.css';
 
