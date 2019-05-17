@@ -56,6 +56,8 @@ class ReportView extends React.Component {
                             {
                                 report ? <div className="pf-c-content">
                                     <dl>
+                                        <dt>Customer id:</dt>
+                                        <dd>{ report.customerId }</dd>
                                         <dt>File name:</dt>
                                         <dd>{ report.fileName }</dd>
                                         <dt>Number of hosts:</dt>

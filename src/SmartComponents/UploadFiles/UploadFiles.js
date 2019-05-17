@@ -16,7 +16,10 @@ import {
     Progress,
     ProgressVariant,
     Stack,
-    StackItem
+    StackItem,
+    FormGroup,
+    TextInput,
+    Form
 } from '@patternfly/react-core';
 
 import Dropzone from 'react-dropzone';
@@ -33,6 +36,10 @@ class UploadFiles extends Component {
         super(props);
         this.onDrop = this.onDrop.bind(this);
         this.clearUploads();
+
+        this.state = {
+            customerId: '123456'
+        };
     }
 
     onDrop(files) {
@@ -51,7 +58,7 @@ class UploadFiles extends Component {
                 }
             };
 
-            const customerId = '123456';
+            const customerId = this.state.customerId;
             this.props.uploadRequest(customerId, file, config);
         });
     }
@@ -79,32 +86,52 @@ class UploadFiles extends Component {
                     <CardBody>
                         {
                             showDropZone ?
-                                <Dropzone
-                                    onDrop={ this.onDrop }
-                                    ref={ dropzoneRef }
-                                    noClick noKeyboard
-                                    multiple={ false }
-                                    accept={ [ 'application/zip', 'application/json' ] }
-                                >
-                                    { ({ getRootProps, getInputProps }) => {
-                                        return (
-                                            <div className="container">
-                                                <div tabIndex="1" { ...getRootProps({ className: 'dropzone' }) }>
-                                                    <input { ...getInputProps() } />
-                                                    <FolderOpenIcon className="pf-c-title pf-m-4xl" />
-                                                    <p className="pf-c-title pf-m-3xl">Drag a file here</p>
-                                                    <p className="pf-c-title">- or -</p>
-                                                    <Button
-                                                        type="button"
-                                                        variant="tertiary"
-                                                        onClick={ openDialog }>
+                                <div>
+                                    <Dropzone
+                                        onDrop={ this.onDrop }
+                                        ref={ dropzoneRef }
+                                        noClick noKeyboard
+                                        multiple={ false }
+                                        accept={ [ 'application/zip', 'application/json' ] }
+                                    >
+                                        { ({ getRootProps, getInputProps }) => {
+                                            return (
+                                                <div className="container">
+                                                    <div tabIndex="1" { ...getRootProps({ className: 'dropzone' }) }>
+                                                        <input { ...getInputProps() } />
+                                                        <FolderOpenIcon className="pf-c-title pf-m-4xl" />
+                                                        <p className="pf-c-title pf-m-3xl">Drag a file here</p>
+                                                        <p className="pf-c-title">- or -</p>
+                                                        <Button
+                                                            type="button"
+                                                            variant="tertiary"
+                                                            onClick={ openDialog }>
                                                             Select a file from your computer
-                                                    </Button>
+                                                        </Button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        );
-                                    } }
-                                </Dropzone> :
+                                            );
+                                        } }
+                                    </Dropzone>
+                                    <br/>
+                                    <Form isHorizontal className="pf-l-level">
+                                        <FormGroup
+                                            label="Customer id"
+                                            isRequired
+                                            fieldId="horizontal-form-name"
+                                        >
+                                            <TextInput
+                                                value={ this.state.customerId }
+                                                isRequired
+                                                type="text"
+                                                id="horizontal-form-name"
+                                                aria-describedby="horizontal-form-name-helper"
+                                                name="horizontal-form-name"
+                                            />
+                                        </FormGroup>
+                                    </Form>
+                                </div>
+                                :
                                 <Stack gutter="md">
                                     {
                                         this.props.uploads.map((upload) => {
