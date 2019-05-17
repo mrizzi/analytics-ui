@@ -1,5 +1,6 @@
 import axios from 'axios';
 export const NOTIFICATIONS_API_ROOT = '/api/xavier';
+// export const NOTIFICATIONS_API_ROOT = '/';
 
 class BackendAPIClient {
     static request(path, body, method = 'get', config) {
