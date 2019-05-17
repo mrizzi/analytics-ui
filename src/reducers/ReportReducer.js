@@ -31,7 +31,7 @@ export const reportReducer = function (state = initialStateFor('reports', []), a
         case failureMessage(FETCH_REPORTS):
             return {
                 ...state,
-                reports: {},
+                reports: [],
                 loading: false,
                 error: action.payload.message
             };
@@ -55,8 +55,7 @@ export const reportReducer = function (state = initialStateFor('reports', []), a
             return {
                 ...state,
                 loading: false,
-                error: action.payload.message,
-                report: null
+                error: action.payload.message
             };
 
         default:
