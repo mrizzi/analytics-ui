@@ -9,10 +9,8 @@ Object {
 exports[`uploadProgress returns a state object 1`] = `
 Object {
   "payload": Object {
-    "data": Object {
-      "file": File {},
-      "progress": 60,
-    },
+    "file": File {},
+    "progress": 60
   },
   "type": "UPLOAD_PROGRESS",
 }

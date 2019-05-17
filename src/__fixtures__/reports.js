@@ -1,4 +1,4 @@
-const reports = {
+const reportsMock = {
     data: [
         {
             id: 36,
@@ -30,8 +30,8 @@ const reports = {
     ]
 };
 
-export const report = {
-    data: [ reports.data[0] ]
+export const reportMock = {
+    data: [ reportsMock.data[0] ]
 };
 
-export default reports;
+export default reportsMock;

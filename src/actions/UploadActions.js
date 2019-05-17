@@ -27,10 +27,8 @@ export const uploadRequest = (customerId, file, config) => {
 export const uploadProgress = (file, progress) => ({
     type: ActionTypes.UPLOAD_PROGRESS,
     payload: {
-        data: {
-            file,
-            progress
-        }
+        file,
+        progress
     }
 });
 

@@ -9,7 +9,7 @@ import {
     pendingMessage
 } from './reducerHelper';
 
-import reports, { report } from '../__fixtures__/reports';
+import reportsMock, { reportMock } from '../__fixtures__/reports';
 
 const initialState = {
     error: null,
@@ -62,18 +62,18 @@ describe('report reducer', () => {
         const expectation = {
             ...reportInitialState,
             loading: false,
-            reports: reports.data,
+            reports: reportsMock.data,
             total: 3
         };
         const newState = reportsReducer(
             reportInitialState,
-            fromRequest(successMessage(FETCH_REPORTS), reports)
+            fromRequest(successMessage(FETCH_REPORTS), reportsMock)
         );
         expect(newState).toEqual(expectation);
     });
 
     it('should handle FETCH_REPORT_SUCCESS', () => {
-        let testReport = report.data;
+        let testReport = reportMock.data;
 
         const expectation = {
             ...reportInitialState,
@@ -82,7 +82,7 @@ describe('report reducer', () => {
         };
         const newState = reportsReducer(
             reportInitialState,
-            fromRequest(successMessage(FETCH_REPORT), report)
+            fromRequest(successMessage(FETCH_REPORT), reportMock)
         );
         expect(newState).toEqual(expectation);
     });

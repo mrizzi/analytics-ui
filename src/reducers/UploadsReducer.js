@@ -15,8 +15,8 @@ export const uploadsReducer = function (state = initialStateFor('uploads', []), 
                 ...state,
                 uploads: state.uploads.map((upload) => {
                     let uploadCopy = { ...upload };
-                    if (upload.file === action.payload.data.file) {
-                        uploadCopy = Object.assign({}, uploadCopy, action.payload.data);
+                    if (upload.file === action.payload.file) {
+                        uploadCopy = Object.assign({}, uploadCopy, action.payload);
                     }
 
                     return uploadCopy;
